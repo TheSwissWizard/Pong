@@ -42,19 +42,37 @@ public class Ball {
 
     private void checkCollision(){
         if (this.ellipse2D.getY() <= Commons.BOARD_TOP_SPACING){
-            adjustDirection();
+            adjustDirection(false);
         }else if (this.ellipse2D.getY() + Commons.BALL_SIZE >= Commons.WINDOW_HEIGHT){
-            adjustDirection();
-        }
-
-        if (this.ellipse2D.intersects(Pong.getPlayer1().getRectangle())
+            adjustDirection(false);
+        }else if (this.ellipse2D.intersects(Pong.getPlayer1().getRectangle())
                 || this.ellipse2D.intersects(Pong.getPlayer2().getRectangle())){
-            adjustDirection();
+            adjustDirection(true);
         }
     }
 
-    private void adjustDirection(){
-
+    private void adjustDirection(boolean playerCollision){
+            if (!playerCollision){
+                if (this.xDirection && this.yDirection){
+                    this.yDirection = false;
+                }else if (!xDirection && this.yDirection){
+                    this.yDirection = false;
+                }else if (!this.xDirection && !this.yDirection){
+                    this.yDirection = true;
+                }else if (this.xDirection && !this.yDirection){
+                    this.yDirection = true;
+                }
+            }else {
+                if (this.xDirection && this.yDirection){
+                    this.xDirection = false;
+                }else if (!this.xDirection && this.yDirection){
+                    this.xDirection =true;
+                }else if (!this.xDirection && !this.yDirection){
+                    this.xDirection = true;
+                }else if(this.xDirection && !this.yDirection){
+                    this.xDirection = false;
+                }
+            }
     }
 
     public int getX() {
