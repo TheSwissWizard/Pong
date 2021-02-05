@@ -11,17 +11,39 @@ public class Ball {
 
     private Ellipse2D ellipse2D;
 
-    private boolean xDirection = true;
-    private boolean yDirection = true;
+    private boolean xDirection;
+    private boolean yDirection;
 
     public Ball(){
         int x = Commons.WINDOW_WIDTH/2 - (Commons.BALL_SIZE/2);
         int y = (Commons.BOARD_TOP_SPACING + Commons.FIELD_HEIGHT/2) - Commons.BALL_SIZE/2;
 
         this.ellipse2D = new Ellipse2D.Double(x,y, Commons.BALL_SIZE, Commons.BALL_SIZE);
+        randomStartDirection();
     }
 
-    public void move(){
+    private void randomStartDirection(){
+        int r = (int) (Math.random() * 4) + 1;
+        switch (r){
+            case 1:
+                this.xDirection = true;
+                this.yDirection = true;
+                break;
+            case 2:
+                this.xDirection = true;
+                this.yDirection = false;
+                break;
+            case 3:
+                this.xDirection = false;
+                this.yDirection = false;
+                break;
+            case 4:
+                this.xDirection = false;
+                this.yDirection = true;
+        }
+    }
+
+    public boolean move(){
         int x;
         if (xDirection){
             x = (int) Math.round(this.ellipse2D.getX()) + Commons.BALL_SPEED;
@@ -38,6 +60,7 @@ public class Ball {
         }
         this.ellipse2D.setFrame(this.ellipse2D.getX(), y, Commons.BALL_SIZE, Commons.BALL_SIZE);
         checkCollision();
+        return checkGoal();
     }
 
     private void checkCollision(){
@@ -73,6 +96,11 @@ public class Ball {
                     this.xDirection = false;
                 }
             }
+    }
+
+    private boolean checkGoal(){
+        return this.ellipse2D.getX() <= Commons.BOARD_SIDE_SPACING
+                || this.ellipse2D.getX() >= Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING;
     }
 
     public int getX() {

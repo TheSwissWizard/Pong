@@ -43,7 +43,9 @@ public class Pong implements ActionListener {
         if (inGame){
             player1.move();
             player2.move();
-            ball.move();
+            if (ball.move()){
+                ball = new Ball();
+            }
         }
     }
 
