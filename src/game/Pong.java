@@ -52,6 +52,7 @@ public class Pong implements ActionListener {
                     increaseBallSpeed();
                     break;
                 case GOAL:
+                    currentBallSpeed = Commons.BALL_SPEED;
                     ball = new Ball();
             }
         }
@@ -64,7 +65,7 @@ public class Pong implements ActionListener {
     }
 
     private void increaseBallSpeed(){
-        //todo implement increasing ball speed after each player bounce
+        currentBallSpeed += (Commons.BALL_SPEED * 0.1);
     }
 
 

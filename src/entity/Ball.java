@@ -70,9 +70,9 @@ public class Ball {
         }
 
         if (checkCollision()){
-            return BallState.WALL;
-        }else{
             return BallState.PLAYER;
+        }else{
+            return BallState.WALL;
         }
     }
 
