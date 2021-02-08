@@ -45,11 +45,14 @@ public class Pong implements ActionListener {
         if (inGame){
             player1.move();
             player2.move();
-            if (ball.move()){
-                ball = new Ball();
-                currentBallSpeed = Commons.BALL_SPEED;
-            }else{
-                increaseBallSpeed();
+            switch (ball.move()){
+                case WALL:
+                    break;
+                case PLAYER:
+                    increaseBallSpeed();
+                    break;
+                case GOAL:
+                    ball = new Ball();
             }
         }
     }
@@ -61,7 +64,7 @@ public class Pong implements ActionListener {
     }
 
     private void increaseBallSpeed(){
-        
+        //todo implement increasing ball speed after each player bounce
     }
 
 

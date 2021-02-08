@@ -9,6 +9,11 @@ import java.awt.geom.Rectangle2D;
 
 public class Ball {
 
+    public enum BallState{
+        WALL, PLAYER, GOAL
+    }
+
+
     private Ellipse2D ellipse2D;
 
     private boolean xDirection;
@@ -43,7 +48,7 @@ public class Ball {
         }
     }
 
-    public boolean move(){
+    public BallState move(){
         double x;
         if (xDirection){
             x = this.ellipse2D.getX() + Pong.getCurrentBallSpeed();
@@ -59,19 +64,31 @@ public class Ball {
             y = this.ellipse2D.getY() - Pong.getCurrentBallSpeed();
         }
         this.ellipse2D.setFrame(this.ellipse2D.getX(), y, Commons.BALL_SIZE, Commons.BALL_SIZE);
-        checkCollision();
-        return checkGoal();
+
+        if (checkGoal()){
+            return BallState.GOAL;
+        }
+
+        if (checkCollision()){
+            return BallState.WALL;
+        }else{
+            return BallState.PLAYER;
+        }
     }
 
-    private void checkCollision(){
+    private boolean checkCollision(){
         if (this.ellipse2D.getY() <= Commons.BOARD_TOP_SPACING){
             adjustDirection(false);
+            return false;
         }else if (this.ellipse2D.getY() + Commons.BALL_SIZE >= Commons.WINDOW_HEIGHT){
             adjustDirection(false);
+            return false;
         }else if (this.ellipse2D.intersects(Pong.getPlayer1().getRectangle())
                 || this.ellipse2D.intersects(Pong.getPlayer2().getRectangle())){
             adjustDirection(true);
+            return true;
         }
+        return false;
     }
 
     private void adjustDirection(boolean playerCollision){
