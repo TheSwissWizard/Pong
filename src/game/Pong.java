@@ -18,6 +18,8 @@ public class Pong implements ActionListener {
     private static Player player2;
 
     private static Ball ball;
+    private static double currentBallSpeed = Commons.BALL_SPEED;
+    public int rallyIteration = 0;
 
     public static boolean inGame = true;
 
@@ -45,6 +47,9 @@ public class Pong implements ActionListener {
             player2.move();
             if (ball.move()){
                 ball = new Ball();
+                currentBallSpeed = Commons.BALL_SPEED;
+            }else{
+                increaseBallSpeed();
             }
         }
     }
@@ -53,6 +58,10 @@ public class Pong implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         update();
         this.gamePanel.repaint();
+    }
+
+    private void increaseBallSpeed(){
+        
     }
 
 
@@ -66,5 +75,9 @@ public class Pong implements ActionListener {
 
     public static Ball getBall(){
         return ball;
+    }
+
+    public static double getCurrentBallSpeed() {
+        return currentBallSpeed;
     }
 }

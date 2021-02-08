@@ -12,7 +12,7 @@ public class Commons {
     public final static int PLAYER_MOVE_UP = 1;
     public final static int PLAYER_MOVE_DOWN = 2;
 
-    public final static int BALL_SPEED = 2;
+    public final static int BALL_SPEED = 4;
     public final static int BALL_SIZE = 40;
 
     public final static int WINDOW_WIDTH = 900;

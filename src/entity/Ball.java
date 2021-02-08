@@ -44,19 +44,19 @@ public class Ball {
     }
 
     public boolean move(){
-        int x;
+        double x;
         if (xDirection){
-            x = (int) Math.round(this.ellipse2D.getX()) + Commons.BALL_SPEED;
+            x = this.ellipse2D.getX() + Pong.getCurrentBallSpeed();
         }else {
-            x = (int) Math.round(this.ellipse2D.getX()) - Commons.BALL_SPEED;
+            x = this.ellipse2D.getX() - Pong.getCurrentBallSpeed();
         }
         this.ellipse2D.setFrame(x,this.ellipse2D.getY(), Commons.BALL_SIZE, Commons.BALL_SIZE);
 
-        int y;
+        double y;
         if (yDirection){
-            y = (int) Math.round(this.ellipse2D.getY()) + Commons.BALL_SPEED;
+            y = this.ellipse2D.getY() + Pong.getCurrentBallSpeed();
         }else {
-            y = (int) Math.round(this.ellipse2D.getY()) - Commons.BALL_SPEED;
+            y = this.ellipse2D.getY() - Pong.getCurrentBallSpeed();
         }
         this.ellipse2D.setFrame(this.ellipse2D.getX(), y, Commons.BALL_SIZE, Commons.BALL_SIZE);
         checkCollision();
