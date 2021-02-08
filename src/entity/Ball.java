@@ -117,7 +117,7 @@ public class Ball {
 
     private boolean checkGoal(){
         return this.ellipse2D.getX() <= Commons.BOARD_SIDE_SPACING
-                || this.ellipse2D.getX() >= Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING;
+                || this.ellipse2D.getX() >= Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING + Commons.BALL_SIZE;
     }
 
     public int getX() {

@@ -24,4 +24,5 @@ public class Commons {
     public final static int FIELD_HEIGHT = WINDOW_HEIGHT - BOARD_TOP_SPACING;
 
     public final static int GAME_DELAY = 20;
+    public final static int GAME_MAX_POINTS = 5;
 }
