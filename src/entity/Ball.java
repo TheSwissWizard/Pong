@@ -116,8 +116,14 @@ public class Ball {
     }
 
     private boolean checkGoal(){
-        return this.ellipse2D.getX() <= Commons.BOARD_SIDE_SPACING
-                || this.ellipse2D.getX() >= Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING + Commons.BALL_SIZE;
+        if (this.ellipse2D.getX() <= Commons.BOARD_SIDE_SPACING){
+            Pong.getPlayer2().addScore();
+            return true;
+        }else if (this.ellipse2D.getX() >= Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING + Commons.BALL_SIZE){
+            Pong.getPlayer1().addScore();
+            return true;
+        }
+        return false;
     }
 
     public int getX() {

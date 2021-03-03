@@ -29,8 +29,12 @@ public class GamePanel extends JPanel {
 
     private void draw(Graphics g){
 
+        g.setColor(Color.white);
+        g.drawString(String.valueOf(Pong.getPlayer1().getScore()), Commons.BOARD_SIDE_SPACING, Commons.FONT_TOP_SPACING);
+        g.drawString(String.valueOf(Pong.getPlayer1().getScore()), Commons.WINDOW_WIDTH - Commons.BOARD_SIDE_SPACING, Commons.FONT_TOP_SPACING);
+
         g.setColor(Color.BLACK);
-        g.fillRect(0,Commons.BOARD_TOP_SPACING, Commons.WINDOW_WIDTH, Commons.WINDOW_HEIGHT);
+        g.fillRect(0,Commons.BOARD_TOP_SPACING, Commons.WINDOW_WIDTH, Commons.WINDOW_HEIGHT);;
 
         g.setColor(Color.GREEN);
         g.drawLine(0, Commons.BOARD_TOP_SPACING, Commons.WINDOW_WIDTH, Commons.BOARD_TOP_SPACING);

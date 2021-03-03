@@ -25,4 +25,7 @@ public class Commons {
 
     public final static int GAME_DELAY = 20;
     public final static int GAME_MAX_POINTS = 5;
+
+    public final static int FONT_SIZE = 20;
+    public final static int FONT_TOP_SPACING = 10;
 }
